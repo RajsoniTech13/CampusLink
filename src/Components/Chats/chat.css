@@ -1,0 +1,207 @@
+.chats {
+  width: 50%;
+  margin: 6% auto;
+  border-radius: 10px;
+  padding: 2%;
+  box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+  background-color: white;
+  max-height: 600px;
+}
+
+.chatWrapper {
+  padding: 10px;
+}
+
+/* 🔹 Chat Top Section */
+/* 🔹 Three Dots Container */
+.chatTopRight {
+  position: relative; /* Ensures the menu is positioned relative to this div */
+}
+
+
+.chatTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background: #fff;
+  border-bottom: 1px solid #ddd;
+}
+
+.chatTopLeft {
+  display: flex;
+  align-items: center;
+}
+
+.chatProfilePic {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 10px;
+}
+
+.chatUserInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.chatUsername {
+  font-weight: bold;
+}
+
+.chatStatus {
+  font-size: 12px;
+  color: green;
+}
+
+/* 🔹 Three Dots Icon */
+.threeDotsIcon {
+  cursor: pointer;
+  color: gray;
+}
+
+/* 🔹 Pop-up Menu */
+.chatMenu {
+  position: absolute;
+  top: 50px;
+  right: 10px;
+  background: white;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+  z-index: 10;
+}
+
+.chatMenu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.chatMenu li {
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.chatMenu li:hover {
+  background: #f5f5f5;
+}
+
+
+/* Middle Section - Chat Messages */
+.chatMiddle {
+  height: 400px;
+  overflow-y: auto;
+  padding: 10px;
+  background-color: #f0f0f0;
+}
+
+.chatMessage {
+  max-width: 70%;
+  padding: 10px;
+  margin: 8px 0;
+  border-radius: 10px;
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+}
+
+.chatReceiver {
+  background-color: #fff;
+  align-self: flex-start;
+  margin-left: 10px;
+}
+
+.chatSender {
+  background-color: #dcf8c6;
+  align-self: flex-end;
+  margin-left: auto;
+  margin-right: 10px;
+}
+
+.chatTimestamp {
+  font-size: 10px;
+  color: gray;
+  margin-left: 5px;
+}
+
+/* Bottom Section - Auto Expanding Input Box */
+.chatBottom {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-top: 1px solid #ccc;
+  background-color: white;
+}
+
+.chatTextarea {
+  flex: 1;
+  padding: 3%;
+  max-height: 150px;
+  min-height: 40px;
+  padding: 10px;
+  border-radius: 20px;
+  border: none;
+  margin: 0 10px;
+  resize: none;
+  font-size: 14px;
+  line-height: 18px;
+  overflow-y: scroll;
+}
+.chatTextarea:focus {
+  outline: none;
+  overflow: hidden; /* Hides scrollbar */
+  
+}
+
+.chatSendButton {
+  background-color: #58075e;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.chatIcon {
+  color: gray;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+/* back burtton */
+.backIcon {
+  cursor: pointer;
+  font-size: 24px;
+  margin-right: 10px;
+  color: #555;
+}
+
+.backIcon:hover {
+  color: #000;
+}
+
+
+/* Emoji picker */
+.emojiPicker {
+  position: absolute;
+  bottom: 60px;
+  left: 10px;
+  z-index: 100;
+  background: white;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+}
+
+.emojiContainer {
+  position: relative;
+}
+
+.chatTextarea {
+  flex: 1;
+  resize: none;
+  max-height: 150px; /* Prevent excessive expansion */
+  overflow-y: auto;
+}

@@ -1,0 +1,173 @@
+.rightbar{
+    flex:   2.5 ;
+    /* background-color: #222222b5;   */
+    height: calc(100vh - 50px);
+    overflow-y: scroll;
+    position: sticky;
+    top: 50px;
+}
+::-webkit-scrollbar {
+    width: 5px;
+  }
+  ::-webkit-scrollbar-track {
+    background-color: #000000;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: rgb(210, 162, 255);
+  }
+.rightbarWrapper{
+    padding: 20px;
+}
+.rightbarbtn{
+
+    cursor: pointer;    
+    text-align: center;
+}
+
+.rightbarTop{
+    /* background: #a600ff; */
+    padding: 4%;
+    margin-bottom: 10px;
+}
+.rightbarTrendingList{
+    color:rgb(0, 0, 0);
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.rightbarTitlePart{
+    
+    text-align: center;
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 8%;
+}
+.rightbarTopListItem{
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    padding: 10px;
+    /* margin-left: 5%; */
+    margin-Bottom: 4%;
+    background: #be6effe0;
+   
+    box-shadow: 0px 4px 5px rgba(4, 0, 0, 0.897); /* Soft shadow */
+
+}
+.TopListTitle{
+    /* font-size: 18px;/ */
+    font-weight: 600;
+}
+.rightbarBottom{
+    background: #000000b1;
+    padding: 4%;
+}
+.rightbarSuggetionTitle{
+    font-size: 18px;
+    color: #efefef;
+}
+.rightbarSuggestionList {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    /* margin-left: 5%; */
+    /* margin-bottom: 2%; */
+    /* background-color: #fff; */
+  }
+.rightbarSuggetionItem {
+    display: flex;
+    align-items: center;
+    /* padding: 12px; */
+    margin-bottom: 10px;
+    background: #fff; /* White background */
+    box-shadow: 0px 3px 3px rgba(255, 252, 252, 0.897); /* Soft shadow */
+    border-radius: 8px; /* Rounded corners */
+    border-top: 1px solid #ddd; /* Border only on top */
+    border-left: 1px solid #ddd; /* Border on left */
+    border-right: 1px solid #ddd; /* Border on right */
+}
+
+.SuggetionCandidate{
+    display: flex;
+    flex-direction: column;
+    margin-top: 4%;
+}
+.SuggetionCandidate span{
+    font-size: 14px;
+    font-weight: 500;
+    color: #000000;
+}
+.SuggetionCandidate p{
+    font-size: 13px;
+    font-weight: 100;
+    color: #1d1d1df6;
+}
+  .rightbarSuggetionImg{
+    width: 32px;
+    height: 32px;
+    background: #000;
+    padding: 7px;
+    border-radius: 50%;
+    object-fit: cover;
+
+    margin-left: 10px;
+    margin-right: 10px;
+
+}
+
+
+
+.rightbarTitle{
+    margin-bottom: 20px;
+}
+
+.rightbarFriendList {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.rightbarTitle{
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.rightbarInfo{
+  margin-bottom: 30px;
+}
+
+.rightbarInfoItem{
+  margin-bottom: 10px;
+}
+
+.rightbarInfoKey{
+  font-weight: 500;
+  margin-right: 15px;
+  color: #555;
+}
+
+.rightbarInfoValue{
+  font-weight: 300;
+}
+
+.rightbarFollowings{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.rightbarFollowing{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+.rightbarFollowingImg{
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 5px;
+}

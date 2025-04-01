@@ -1,0 +1,49 @@
+.chatList {
+    width: 50%;
+    margin: 6% auto;
+    border-radius: 10px;
+    padding: 2%;
+    box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+    background-color: white;
+    max-height: 600px; /* You can adjust the height as per your requirement */
+    overflow-y: auto; /* Adds vertical scrolling */
+    scroll-behavior: smooth;
+  }
+  
+  .chatListItem {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .chatListItem:hover {
+    background-color: #f0f0f0;
+  }
+  
+  .chatProfilePic {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+  
+  .chatUserInfo {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .chatUsername {
+    font-weight: bold;
+  }
+  
+  .chatStatus {
+    color: green;
+    font-size: 12px;
+  }
+  
