@@ -1,9 +1,10 @@
-Here’s the **perfected** `README.md` file with proper formatting and corrections. You can directly **copy and paste** it into your VS Code.  
-
-```md
+ 
 # 📢 CampusLink - Intra-College Social Media 🌐🎓
 
 CampusLink is a social media platform designed exclusively for students, allowing them to connect, collaborate, and communicate using their official college email ID.
+```md
+
+
 
 ---
 
