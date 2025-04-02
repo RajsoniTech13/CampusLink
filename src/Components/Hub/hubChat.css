@@ -1,0 +1,186 @@
+/* Main Container for Hub Chat (Anonymous Chat) */
+.hubChats {
+    width: 90%;
+    max-width: 800px;
+    margin: 6% auto;
+    border-radius: 10px;
+    padding: 0;
+    box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+    background-color: white;
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Wrapper for Hub Chat */
+.hubChatWrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+/* Top Section */
+.hubChatTop {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #663eda80;
+    border-radius: 10px 10px 0 0;
+    flex-shrink: 0;
+}
+
+/* Right Section - Menu Button */
+.hubChatTopRight {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+/* Dropdown Menu */
+.hubChatMenu {
+    position: absolute;
+    top: 40px;
+    right: 0;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    width: 150px;
+    padding: 5px 0;
+}
+
+.hubChatMenu ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.hubChatMenu li {
+    padding: 10px 15px;
+    cursor: pointer;
+    color: #555;
+    font-size: 14px;
+}
+
+.hubChatMenu li:hover {
+    background-color: #f1f1f1;
+}
+
+/* Middle Section - Chat Messages */
+.hubChatMiddle {
+    flex-grow: 1;
+    padding: 25px;
+    overflow-y: auto;
+}
+
+/* Custom Scrollbar */
+.hubChatMiddle::-webkit-scrollbar {
+    width: 6px;
+}
+
+.hubChatMiddle::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+}
+
+/* Anonymous Messages */
+.hubChatMessage {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Sent Messages */
+.hubChatSender {
+    background-color: #e0f7fa;
+    border-radius: 10px;
+    padding: 10px;
+    max-width: 70%;
+    align-self: flex-start;
+}
+
+/* Received Messages */
+.hubChatReceiver {
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    padding: 10px;
+    max-width: 70%;
+    align-self: flex-end;
+}
+
+/* Timestamp */
+.hubChatTimestamp {
+    display: block;
+    font-size: 12px;
+    color: gray;
+    margin-top: 5px;
+    text-align: right;
+}
+
+/* Bottom Section - Fixed */
+.hubChatBottom {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background-color: #fff;
+    border-top: 1px solid #ddd;
+    border-radius: 0 0 10px 10px;
+    flex-shrink: 0;
+}
+
+/* Input Field */
+.hubChatTextarea {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    resize: none;
+    font-size: 14px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+}
+
+.hubChatTextarea:focus {
+    outline: none;
+    background-color: #fff;
+}
+
+/* Send Button */
+.hubChatSendButton {
+    background-color: #6e18f8;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-left: 10px;
+    transition: background 0.3s ease;
+}
+
+.hubChatSendButton:hover {
+    background-color: #45a049;
+}
+
+/* Icons */
+.backIcon, .threeDotsIcon {
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .hubChats {
+        width: 95%;
+        margin: 3% auto;
+        max-height: 500px;
+    }
+    
+    .hubChatTop {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .hubChatSendButton {
+        padding: 8px 15px;
+    }
+}

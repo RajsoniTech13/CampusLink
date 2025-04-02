@@ -28,7 +28,7 @@ export default function sidebar() {
 
                     <li className="sidebarListItem">
                         <RssFeed className="sidebarIcon" />
-                        <span className="sidebarListItemText" onClick={GoToHome}> Feed</span>
+                        <span className="sidebarListItemText" onClick={GoToHome}> Post</span>
                     </li>
                     <li className="sidebarListItem">
                         <Chat className="sidebarIcon" />
@@ -58,13 +58,17 @@ export default function sidebar() {
                         <Bookmark className="sidebarIcon" />
                         <span className="sidebarListItemText"> Saved Chats </span>
                     </li>
+                    <hr className="sidebarHr" />
+
                     <li className="sidebarListItem">
                         <Favorite className="sidebarIcon" />
                         <span className="sidebarListItemText"> Favourites</span>
                     </li>
 
-                    <hr className="sidebarHr" />
+                    
+
                     <ul className="sidebarFriendList">
+                    
                         {Users.map((u) => (
                             <CloseFriend key={u.id} user={u} />
                         ))}

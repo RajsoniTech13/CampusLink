@@ -1,16 +1,16 @@
-.chatList {
+.groupList {
     width: 50%;
     margin: 6% auto;
     border-radius: 10px;
     padding: 2%;
     box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
-    background-color: white;  
-    max-height: 600px; /* You can adjust the height as per your requirement */
+    background-color: white;
+    max-height: 600px; /* Adjust the height as per your requirement */
     overflow-y: auto; /* Adds vertical scrolling */
     scroll-behavior: smooth;
   }
   
-  .chatListItem {
+  .groupItem {
     display: flex;
     align-items: center;
     padding: 10px;
@@ -22,28 +22,19 @@
     transition: background-color 0.3s ease;
   }
   
-  .chatListItem:hover {
+  .groupItem:hover {
     background-color: #f0f0f0;
   }
   
-  .chatProfilePic {
+  .groupIcon {
     width: 40px;
     height: 40px;
+    object-fit: cover;
     border-radius: 50%;
     margin-right: 10px;
   }
   
-  .chatUserInfo {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .chatUsername {
+  .groupName {
     font-weight: bold;
-  }
-  
-  .chatStatus {
-    color: green;
-    font-size: 12px;
   }
   

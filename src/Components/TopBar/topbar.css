@@ -1,12 +1,14 @@
 .topbarContainer{
     height: 50px;
     width:100% ;
-    background-color: rgba(72, 6, 133, 0.936);
+    padding: 2%;
+    background-color: rgba(0, 0, 0, 0.348);
     display:flex;
     align-items: center;
     position: sticky;
     top: 0;
     z-index: 999;
+    border-radius:14px 38px 14px 38px;
 }
 .logo{
     font-size: 24px;
@@ -14,7 +16,6 @@
     font-weight: bold;
      color: white;
      cursor: pointer;
-    ;
 }
 .searchbar{
     width: 100%;
@@ -56,6 +57,8 @@
 }
 .topbarLeft{
     flex: 2;
+    /* background-color: #000; */
+
 }
 .topbarCenter{
     flex: 5;

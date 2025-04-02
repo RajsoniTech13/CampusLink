@@ -1,11 +1,11 @@
 .chats {
-  width: 50%;
+  width: 90%;
   margin: 6% auto;
   border-radius: 10px;
   padding: 2%;
   box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
   background-color: white;
-  max-height: 600px;
+  max-height: 650px;
 }
 
 .chatWrapper {
@@ -129,7 +129,9 @@
 
 /* Bottom Section - Auto Expanding Input Box */
 .chatBottom {
+  
   display: flex;
+  
   align-items: center;
   padding: 10px;
   border-top: 1px solid #ccc;

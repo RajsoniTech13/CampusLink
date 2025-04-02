@@ -1,7 +1,7 @@
 .sidebar{
     
     flex: 2;
-    background-color: #cbc1ff;  
+    background-color: black;  
     height: calc(100vh - 50px);
     overflow-y: scroll;
     position: sticky;
@@ -30,6 +30,7 @@
 .sidebarListItem {
   display: flex;
   align-items: center;
+  color: aliceblue;
   margin-bottom: 20px;
   margin-top: 20px;
   margin-left: 20px;
@@ -40,11 +41,13 @@
 }
 .sidebarHr{
     margin: 20px 0 ;
+    color: aqua;
 }
 
 .sidebarFriendList {
     padding: 0;
     margin: 0;
+    color: aliceblue;
     list-style: none;
   }
 .sidebarFriend{
