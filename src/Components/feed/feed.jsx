@@ -9,12 +9,22 @@ import GroupChat from "../GroupChat/groupChat";
 import GroupList from "../GroupList/groupList";
 import { GroupChats } from "../../GroupChat"; // Import GroupChats data
 import HubChat from "../Hub/hubChat";
+import ClubsCom from "../Clubs&com/clubs&com";
+import ClubDetails from "../Clubs&com/ClubDetails";
 import "./feed.css";
 
 export default function Feed() {
   const [selectedUser, setSelectedUser] = useState(null); // Track selected user
   const [selectedGroup, setSelectedGroup] = useState(null); // Track selected group
+  const [selectedClub, setSelectedClub] = useState(null);
 
+  const handleClubSelect = (clubName) => {
+    setSelectedClub(clubName);
+  };
+
+  const goBackToClubList = () => {
+    setSelectedClub(null);
+  };
   const handleChatSelect = (userId) => {
     // Find the selected user from the Users array
     const user = Users.find((user) => user.id === userId);
@@ -76,7 +86,12 @@ export default function Feed() {
           // Show GroupChat if a group is selected
           <GroupChat group={selectedGroup} goBack={goBackToGroupList} />
         )} */}
-        <HubChat/>
+        {/* <HubChat/> */}
+        {!selectedClub ? (
+          <ClubsCom onClubSelect={handleClubSelect} />
+        ) : (
+          <ClubDetails clubName={selectedClub} goBack={goBackToClubList} />
+        )}
       </div>
     </div>
   );

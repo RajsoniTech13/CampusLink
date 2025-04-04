@@ -7,7 +7,7 @@
     padding: 0;
     box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
     background-color: white;
-    height: 600px;
+    max-height: 700px;
     display: flex;
     flex-direction: column;
 }
@@ -16,7 +16,7 @@
 .hubChatWrapper {
     display: flex;
     flex-direction: column;
-    height: 100%;
+    max-height: 100%;
 }
 
 /* Top Section */

@@ -1,0 +1,182 @@
+.club-posts {
+    width: 90%;
+    max-width: 900px;
+    margin: 4% auto;
+    border-radius: 16px;
+    color: #e6f1ff;
+    background-color: rgba(20, 20, 30, 0.85);
+    padding: 24px;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.posts-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
+    /* text-align: center; */
+}
+.posts-header h2{
+    margin-left: 23%;
+    /* text-align: center */
+}
+
+/* Back Button */
+.back-button {
+    /* display: inline-block; */
+    background: linear-gradient(135deg, rgba(60, 60, 70, 0.8), rgba(90, 90, 100, 0.8));
+    border: none;
+    color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.back-button:hover {
+    background: linear-gradient(135deg, rgba(90, 90, 100, 0.95), rgba(60, 60, 70, 0.95));
+    transform: scale(1.02);
+}
+
+/* Post Creation Box */
+.post-box {
+    background-color: rgba(0, 0, 0, 0.4);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0, 195, 255, 0.2);
+    margin-bottom: 32px;
+}
+
+.post-box h3 {
+    margin-bottom: 12px;
+    color: #ffffff;
+}
+
+.post-box input[type="text"],
+.post-box input[type="file"],
+.post-box textarea {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #f1f1f1;
+    font-size: 14px;
+    outline: none;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+/* Submit Button */
+.post-box button {
+    background-color: rgba(0, 195, 255, 0.75);
+    color: #fff;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 16px;
+    margin-top: 12px;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+.post-box button:hover {
+    background-color: rgba(0, 195, 255, 1);
+}
+
+/* Preview Image */
+.preview-img {
+    width: 100%;
+    max-height: 250px;
+    object-fit: cover;
+    margin-top: 12px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 10px rgba(0, 195, 255, 0.2);
+}
+
+/* Post List Styling */
+.post-list {
+    width: 90%;
+    max-width: 900px;
+    margin: 0 auto 80px;
+    padding: 24px;
+    border-radius: 16px;
+    background-color: rgba(20, 20, 30, 0.85);
+    overflow-y: auto;
+
+    /* Snap Scroll */
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+
+    /* Scrollbar Style */
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 195, 255, 0.6) transparent;
+}
+
+.post-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.post-list::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 195, 255, 0.6);
+    border-radius: 4px;
+}
+
+/* Post Cards */
+.club-post-item {
+    scroll-snap-align: start;
+    margin-bottom: 24px;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.club-post-item:hover {
+    transform: scale(1.01);
+    box-shadow: 0 8px 24px rgba(0, 195, 255, 0.3);
+}
+
+.club-post-item h4 {
+    font-size: 18px;
+    margin-bottom: 8px;
+    color: #ffffff;
+}
+
+.club-post-item p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #cccccc;
+}
+
+.club-post-item img {
+    width: 100%;
+    max-height: 500px;
+    object-fit: cover;
+    margin-top: 12px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 10px rgba(0, 195, 255, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.club-post-item img:hover {
+    transform: scale(1.02);
+    box-shadow: 0 6px 14px rgba(0, 195, 255, 0.25);
+}
+
+.club-post-item small {
+    display: block;
+    margin-top: 10px;
+    font-size: 12px;
+    color: #aaa;
+    font-style: italic;
+}

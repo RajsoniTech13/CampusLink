@@ -5,7 +5,7 @@
     padding: 2%;
     box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
     background-color: white;  
-    max-height: 600px; /* You can adjust the height as per your requirement */
+    max-height: 530px; /* You can adjust the height as per your requirement */
     overflow-y: auto; /* Adds vertical scrolling */
     scroll-behavior: smooth;
   }

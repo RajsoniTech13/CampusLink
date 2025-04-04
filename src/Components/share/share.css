@@ -5,6 +5,7 @@
     margin-left: 5%;
     margin-right: 5%;
     border-radius: 10px;
+    color: aliceblue;
     -webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
     box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
   }
@@ -16,6 +17,8 @@
   .shareTop {
     display: flex;
     align-items: center;
+    
+    /* background: none; */
   }
   
   .shareProfileImg {
@@ -29,6 +32,9 @@
   .shareInput {
     border: none;
     width: 80%;
+    background: none;
+    color: aliceblue;
+    
   }
   
   .shareInput:focus {

@@ -1,0 +1,170 @@
+.club-details {
+    width: 95%;
+    margin: 2% auto;
+    border-radius: 16px;
+    max-height: 710px;
+    color: #e6f1ff;
+    background-color: rgba(20, 20, 30, 0.8);
+    padding: 0; /* Removed internal padding here */
+    /* overflow: hidden; */
+    scroll-behavior: smooth;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .club-header {
+    display: flex;
+    align-items: center;
+
+    /* justify-content: center; */
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background-color: rgba(20, 20, 30, 0.95);
+    padding:2%;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    /* gap: 12px;ś */
+  }
+  
+  .club-name {
+    font-size: 22px;
+    font-weight: 600;
+    color: #e6f1ff;
+    margin-left:30%;
+    /* text-align: center; */
+
+  }
+  
+  .back-button {
+    /* position: absolute; */
+    /* left: 24px; */
+    margin-left: 0%;
+    background: linear-gradient(135deg, rgba(60, 60, 70, 0.7), rgba(90, 90, 100, 0.7));
+    border: none;
+    color: #ffffff;
+    padding: 8px 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s ease;
+    font-weight: bold;
+  }
+  
+  .back-button:hover {
+    background: linear-gradient(135deg, rgba(90, 90, 100, 0.9), rgba(60, 60, 70, 0.9));
+  }
+  
+  /* View Club Posts Button */
+  .view-posts-btn {
+    background-color: #6218a1;
+    color: white;
+    font-weight: bold;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 10px;
+    margin: 20px auto;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    width: fit-content;
+  }
+  
+  .view-posts-btn:hover {
+    background-color: #7b26c7;
+  }
+  
+  /* Query Panel Styling */
+  .query-section,
+  .query-list {
+    /* position: relative; */
+    /* height: 200px; */
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 18px;
+    margin: 12px 24px;
+    border-radius: 12px;
+    box-shadow: 0 0 20px -10px rgba(0, 0, 0, 0.7);
+  }
+  .query-list {
+    height: 260px;
+    overflow-y: auto;
+    position: relative; /* Required for sticky to work inside */
+    scrollbar-width: thin;
+    scrollbar-color: rgba(155, 0, 190, 0.6) transparent;
+  }
+  
+  
+  textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #f1f1f1;
+    resize: none;
+    font-size: 14px;
+    margin-top: 10px;
+  }
+  
+  button {
+    margin-top: 12px;
+    padding: 10px 16px;
+    border-radius: 8px;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s ease;
+  }
+  
+  .query-section button {
+    background-color: rgba(155, 0, 190, 0.7);
+    color: #fff;
+  }
+  
+  .query-section button:hover {
+    background-color: rgba(155, 0, 190, 1);
+  }
+  
+  .query-item {
+    /* position: sticky; */
+    top: 0;
+    background-color: rgba(255, 255, 255, 0.07);
+    padding: 12px;
+    margin-top: 10px;
+    border-radius: 8px;
+    z-index: 1;
+    white-space: pre-wrap;   /* Allows line breaks & wrapping */
+    word-wrap: break-word;   /* Break long words */
+  }
+  
+  
+  .respond-box input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 6px;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.08);
+    color: white;
+  }
+  
+  .respond-box small {
+    display: block;
+    margin-top: 4px;
+    font-size: 11px;
+    color: #cccccc;
+  }
+  
+
+  
+  .query-list::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  .query-list::-webkit-scrollbar-thumb {
+    background-color: rgba(155, 0, 190, 0.6);
+    border-radius: 4px;
+  }
+
+
+  .QueriesTitle{
+    margin: 0 auto;
+  }

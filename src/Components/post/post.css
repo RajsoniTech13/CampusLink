@@ -4,11 +4,14 @@
     margin-top: 3%;
     margin-left: 5%;
     margin-right: 5%;
-    -webkit-box-shadow: 0px 0px 16px -8px rg    ba(0, 0, 0, 0.68);
-    box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+    color: aliceblue;
+    -webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+    box-shadow: 0px 0px 16px -8px rgb(0, 0, 0);
+    /* overflow-y: scroll; */
 }
 .postWrapper{
     padding: 10px;
+    /* background: #e4dddd; */
 }
 .postTop{
     display: flex;
@@ -36,7 +39,7 @@
 
 .postDate{
     font-size: 12px;
-    color: rgba(72, 72, 72, 0.836);
+    color: rgba(132, 132, 132, 0.988);
 }
 
 .postCenter{
