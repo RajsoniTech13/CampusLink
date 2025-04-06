@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import "./register.css";
 
 const Register = () => {
@@ -43,6 +44,7 @@ const Register = () => {
         <label htmlFor="backgroundPhoto" className="register-button">Change Background</label>
         <input type="file" id="backgroundPhoto" accept="image/*" onChange={changeBackground} hidden />
         <button className="register-button">Sign Up</button>
+        <p>Already have an account? <Link to="/">Login</Link></p>
       </div>
     </div>
   );
