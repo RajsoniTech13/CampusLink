@@ -1,0 +1,53 @@
+services:
+  db:
+    image: mysql:8.0
+    container_name: campuslink_db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: campuslink
+      MYSQL_USER: campususer
+      MYSQL_PASSWORD: campuspassword
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./server/schema.sql:/docker-entrypoint-initdb.d/1_schema.sql
+      - ./server/migration_anonymous_chat.sql:/docker-entrypoint-initdb.d/2_migration.sql
+
+  backend:
+    build: ./server
+    container_name: campuslink_backend
+    restart: always
+    ports:
+      - "5001:5001"
+    environment:
+      - PORT=5001
+      - DB_HOST=db
+      - DB_USER=campususer
+      - DB_PASSWORD=campuspassword
+      - DB_NAME=campuslink
+      - JWT_SECRET=campuslink_super_secret_key_2026
+      - CLIENT_URL=http://localhost:5173
+    depends_on:
+      - db
+    volumes:
+      - ./server:/app
+      - /app/node_modules
+
+  frontend:
+    build: .
+    container_name: campuslink_frontend
+    restart: always
+    ports:
+      - "5173:5173"
+    environment:
+      - VITE_API_URL=http://localhost:5001
+    depends_on:
+      - backend
+    volumes:
+      - .:/app
+      - /app/node_modules
+
+volumes:
+  mysql_data:

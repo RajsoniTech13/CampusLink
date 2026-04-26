@@ -65,7 +65,21 @@ CampusLink/
 └── tailwind.config.js
 ```
 
-## 🚀 Setup Instructions
+## 🚀 Quick Start (Docker)
+
+The easiest way to start CampusLink is using Docker. It will automatically set up the MySQL database, the Backend, and the Frontend for you.
+
+```bash
+# 1. Start everything
+docker-compose up --build
+
+# 2. Open your browser
+Visit http://localhost:5173
+```
+
+---
+
+## 🛠️ Manual Setup (Alternative)
 
 ### Prerequisites
 - **Node.js** >= 18
@@ -73,54 +87,31 @@ CampusLink/
 - **npm** >= 9
 
 ### 1. Database Setup
-
 ```bash
-# Login to MySQL
-mysql -u root -p
-
-# Run the schema (creates database, tables, and seed data)
-source /path/to/CampusLink/server/schema.sql;
+mysql -u root -p -e "CREATE DATABASE campuslink;"
+mysql -u root -p campuslink < server/schema.sql
+mysql -u root -p campuslink < server/migration_anonymous_chat.sql
 ```
 
 ### 2. Backend Setup
-
 ```bash
 cd server
-
-# Install dependencies
 npm install
-
-# Configure environment
-cp .env.example .env
-# Edit .env with your MySQL credentials:
-# DB_PASSWORD=your_mysql_password
-
-# Start server
 npm run dev
-# Server runs on http://localhost:5001
 ```
 
 ### 3. Frontend Setup
-
 ```bash
-# From project root
-cd CampusLink
-
-# Install dependencies
 npm install
-
-# Start dev server
 npm run dev
-# Frontend runs on http://localhost:5173
 ```
 
-### 4. Open the App
-
-Visit `http://localhost:5173` in your browser.
+---
 
 **Demo Credentials:**
 - Email: `demo@campus.edu`
 - Password: `password123`
+
 
 (or register a new account)
 

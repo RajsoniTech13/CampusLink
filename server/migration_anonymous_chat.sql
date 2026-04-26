@@ -12,4 +12,4 @@ CREATE TABLE IF NOT EXISTS anonymous_messages (
   FOREIGN KEY (sender_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
-CREATE INDEX IF NOT EXISTS idx_anon_messages_created ON anonymous_messages(created_at DESC);
+CREATE INDEX idx_anon_messages_created ON anonymous_messages(created_at DESC);
