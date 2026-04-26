@@ -184,6 +184,18 @@ CREATE TABLE messages (
   FOREIGN KEY (sender_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
+-- ======================== ANONYMOUS MESSAGES (Campus Hub) ========================
+CREATE TABLE anonymous_messages (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  sender_id INT NOT NULL,
+  anonymous_alias VARCHAR(50) NOT NULL,
+  content TEXT NOT NULL,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (sender_id) REFERENCES users(id) ON DELETE CASCADE
+);
+
+CREATE INDEX idx_anon_messages_created ON anonymous_messages(created_at DESC);
+
 -- ======================== NOTIFICATIONS ========================
 CREATE TABLE notifications (
   id INT AUTO_INCREMENT PRIMARY KEY,

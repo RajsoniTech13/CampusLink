@@ -27,6 +27,7 @@ import clubRoutes from './routes/clubs.js';
 import groupRoutes from './routes/groups.js';
 import chatRoutes from './routes/chats.js';
 import notificationRoutes from './routes/notifications.js';
+import anonymousRoutes from './routes/anonymous.js';
 
 // Import middleware
 import { errorHandler } from './middleware/errorHandler.js';
@@ -78,6 +79,7 @@ app.use('/api/clubs', clubRoutes);
 app.use('/api/groups', groupRoutes);
 app.use('/api/chats', chatRoutes);
 app.use('/api/notifications', notificationRoutes);
+app.use('/api/anonymous', anonymousRoutes);
 
 // Health check
 app.get('/api/health', (_req, res) => {

@@ -3,11 +3,9 @@ import { Add, Group as GroupIcon, People, Chat } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../../Components/Navbar/Navbar.jsx";
 import useChatStore from "../../store/chatStore.js";
+import { imgSrc } from "../../utils/config.js";
 import api from "../../services/api.js";
 import toast from "react-hot-toast";
-
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
-const imgSrc = (pic) => pic?.startsWith('/') ? `${API_URL}${pic}` : pic;
 
 export default function Groups() {
   const [groups, setGroups] = useState([]);
@@ -49,7 +47,7 @@ export default function Groups() {
   const openGroupChat = async (groupId) => {
     try {
       const { data } = await api.get(`/chats/group/${groupId}`);
-      if (data.chatId) navigate('/chat');
+      if (data.chatId) navigate('/chat', { state: { activeChat: data.chatId } });
     } catch { toast.error("No group chat found"); }
   };
 

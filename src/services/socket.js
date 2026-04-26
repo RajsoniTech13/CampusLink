@@ -4,15 +4,15 @@ import { API_URL } from '../utils/config.js';
 const SOCKET_URL = API_URL;
 let socket = null;
 
-export const connectSocket = (token) => {
+export const connectSocket = () => {
   if (socket?.connected) return socket;
 
   socket = io(SOCKET_URL, {
-    auth: { token },
     withCredentials: true,
     reconnection: true,
     reconnectionDelay: 1000,
-    reconnectionAttempts: 5,
+    reconnectionAttempts: 10,
+    transports: ['websocket', 'polling'],
   });
 
   socket.on('connect', () => {
