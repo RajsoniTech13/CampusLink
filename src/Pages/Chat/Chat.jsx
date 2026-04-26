@@ -1,3 +1,4 @@
+import { useState, useEffect, useRef } from "react";
 import { Send, ArrowBack, Forum, Group as GroupIcon, Visibility, VisibilityOff, SentimentSatisfiedAlt } from "@mui/icons-material";
 import { useLocation } from "react-router-dom";
 import EmojiPicker from 'emoji-picker-react';
@@ -38,6 +39,7 @@ export default function ChatPage() {
   const [hubTyping, setHubTyping] = useState([]);
   const [hubLoading, setHubLoading] = useState(false);
   const [hubJoined, setHubJoined] = useState(false);
+  const [vanishMode, setVanishMode] = useState(false);
   const hubEndRef = useRef(null);
   const hubTypingTimer = useRef(null);
 
@@ -68,7 +70,14 @@ export default function ChatPage() {
   useEffect(() => {
     const socket = getSocket();
     if (!socket) return;
-    const handleHubMsg = (msg) => setHubMessages(prev => [...prev, msg]);
+    const handleHubMsg = (msg) => {
+      setHubMessages(prev => [...prev, msg]);
+      if (msg.is_vanish) {
+        setTimeout(() => {
+          setHubMessages(prev => prev.filter(m => m.id !== msg.id));
+        }, 10000); // Disappear after 10 seconds
+      }
+    };
     const handleHubTyping = ({ alias }) => setHubTyping(prev => prev.includes(alias) ? prev : [...prev, alias]);
     const handleHubStopTyping = ({ alias }) => setHubTyping(prev => prev.filter(a => a !== alias));
     socket.on('hub-new-message', handleHubMsg);
@@ -122,7 +131,13 @@ export default function ChatPage() {
   const handleHubSend = () => {
     if (!hubText.trim()) return;
     const socket = getSocket();
-    if (socket) { socket.emit('hub-message', { content: hubText.trim() }); socket.emit('hub-stop-typing'); }
+    if (socket) {
+      socket.emit('hub-message', {
+        content: hubText.trim(),
+        isVanish: vanishMode
+      });
+      socket.emit('hub-stop-typing');
+    }
     setHubText("");
   };
 
@@ -221,31 +236,49 @@ export default function ChatPage() {
   // ─── RENDER HUB ───
   const renderHub = () => (
     <div className="flex-1 flex flex-col">
-      <div className="flex items-center gap-3 p-4 bg-white/80 dark:bg-dark-800/80 backdrop-blur-md border-b border-gray-200 dark:border-dark-400 shadow-sm">
-        <div className="w-11 h-11 rounded-full bg-gradient-to-br from-accent-500 to-primary-600 flex items-center justify-center text-white shadow-lg">
-          <VisibilityOff style={{ fontSize: 22 }} />
+      <div className="flex items-center justify-between p-4 bg-white/80 dark:bg-dark-800/80 backdrop-blur-md border-b border-gray-200 dark:border-dark-400 shadow-sm">
+        <div className="flex items-center gap-3">
+          <div className="w-11 h-11 rounded-full bg-gradient-to-br from-accent-500 to-primary-600 flex items-center justify-center text-white shadow-lg">
+            <VisibilityOff style={{ fontSize: 22 }} />
+          </div>
+          <div>
+            <p className="text-base font-bold text-gray-900 dark:text-white">Campus Hub</p>
+            <p className="text-xs text-dark-200 font-medium">
+              {hubTyping.length > 0 ? <span className="text-accent-500 animate-pulse">{hubTyping[0]} is typing...</span> : 'Anonymous • Everyone can see messages'}
+            </p>
+          </div>
         </div>
-        <div>
-          <p className="text-base font-bold text-gray-900 dark:text-white">Campus Hub</p>
-          <p className="text-xs text-dark-200 font-medium">
-            {hubTyping.length > 0 ? <span className="text-accent-500 animate-pulse">{hubTyping[0]} is typing...</span> : 'Anonymous • Everyone can see messages'}
-          </p>
+        <div className="flex items-center gap-2 bg-gray-100 dark:bg-dark-700 px-3 py-1.5 rounded-full border border-gray-200 dark:border-dark-600">
+          <span className="text-[10px] font-bold uppercase tracking-wider text-dark-200">Vanish Mode</span>
+          <button
+            onClick={() => setVanishMode(!vanishMode)}
+            className={`w-10 h-5 rounded-full transition-all relative ${vanishMode ? 'bg-accent-500' : 'bg-gray-300 dark:bg-dark-500'}`}
+          >
+            <div className={`absolute top-0.5 w-4 h-4 rounded-full bg-white transition-all ${vanishMode ? 'left-5.5' : 'left-0.5'}`} />
+          </button>
         </div>
       </div>
-      <div className="flex-1 overflow-y-auto p-4 space-y-3">
+      <div className={`flex-1 overflow-y-auto p-4 space-y-3 transition-colors duration-500 ${vanishMode ? 'bg-dark-900/10' : ''}`}>
         {hubLoading ? <div className="flex justify-center py-8"><div className="w-8 h-8 border-3 border-primary-500 border-t-transparent rounded-full animate-spin" /></div> :
          hubMessages.length === 0 ? <div className="h-full flex items-center justify-center"><p className="text-sm text-dark-200 bg-white dark:bg-dark-800 px-4 py-2 rounded-full border border-gray-200 dark:border-dark-700 shadow-sm">Be the first to say something anonymously! 🎭</p></div> :
          hubMessages.map((m, idx) => {
           const isMine = m.anonymous_alias === hubAlias || (hubMessages[idx]?._mine);
           return (
-            <div key={m.id || idx} className={`flex ${isMine ? 'justify-end' : 'justify-start'}`}>
+            <div key={m.id || idx} className={`flex ${isMine ? 'justify-end' : 'justify-start'} ${m.is_vanish ? 'animate-pulse' : ''}`}>
               <div className={`max-w-[75%] md:max-w-[60%]`}>
-                {!isMine && <span className="text-xs font-semibold text-accent-500 mb-1 ml-1 block">🎭 {m.anonymous_alias}</span>}
-                <div className={`px-4 py-2.5 text-[15px] leading-relaxed ${isMine ? 'bg-gradient-to-tr from-accent-600 to-purple-500 text-white rounded-2xl rounded-br-sm shadow-md' : 'bg-white dark:bg-dark-700 text-gray-900 dark:text-white rounded-2xl rounded-bl-sm shadow-sm border border-gray-100 dark:border-dark-600'}`}>
+                {!isMine && <span className="text-xs font-semibold text-accent-500 mb-1 ml-1 block">🎭 {m.anonymous_alias} {m.is_vanish && '✨'}</span>}
+                <div className={`px-4 py-2.5 text-[15px] leading-relaxed relative ${
+                  m.is_vanish
+                    ? 'bg-gradient-to-tr from-purple-900/40 to-indigo-900/40 border border-purple-500/30 text-white italic rounded-2xl rounded-bl-sm backdrop-blur-sm'
+                    : isMine
+                      ? 'bg-gradient-to-tr from-accent-600 to-purple-500 text-white rounded-2xl rounded-br-sm shadow-md'
+                      : 'bg-white dark:bg-dark-700 text-gray-900 dark:text-white rounded-2xl rounded-bl-sm shadow-sm border border-gray-100 dark:border-dark-600'
+                }`}>
                   {m.content}
+                  {m.is_vanish && <div className="absolute -top-1 -right-1 w-2 h-2 bg-purple-500 rounded-full animate-ping" />}
                 </div>
                 <span className={`text-[10px] font-medium text-dark-200 mt-1 block ${isMine ? 'text-right mr-1' : 'ml-1'}`}>
-                  {new Date(m.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                  {m.is_vanish ? 'Disappearing soon...' : new Date(m.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                 </span>
               </div>
             </div>

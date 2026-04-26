@@ -4,8 +4,9 @@ import pool from '../config/db.js';
 export const getRecentMessages = async (page = 1, limit = 50) => {
   const offset = (page - 1) * limit;
   const [rows] = await pool.query(
-    `SELECT id, anonymous_alias, content, created_at
+    `SELECT id, anonymous_alias, content, is_vanish, created_at
      FROM anonymous_messages
+     WHERE is_vanish = FALSE
      ORDER BY created_at DESC
      LIMIT ? OFFSET ?`,
     [limit, offset]
@@ -14,14 +15,14 @@ export const getRecentMessages = async (page = 1, limit = 50) => {
 };
 
 // ─── Save anonymous message ───
-export const saveMessage = async ({ sender_id, anonymous_alias, content }) => {
+export const saveMessage = async ({ sender_id, anonymous_alias, content, is_vanish = false }) => {
   const [result] = await pool.query(
-    'INSERT INTO anonymous_messages (sender_id, anonymous_alias, content) VALUES (?, ?, ?)',
-    [sender_id, anonymous_alias, content]
+    'INSERT INTO anonymous_messages (sender_id, anonymous_alias, content, is_vanish) VALUES (?, ?, ?, ?)',
+    [sender_id, anonymous_alias, content, is_vanish]
   );
   // Return the message WITHOUT the real sender_id (anonymous!)
   const [rows] = await pool.query(
-    `SELECT id, anonymous_alias, content, created_at
+    `SELECT id, anonymous_alias, content, is_vanish, created_at
      FROM anonymous_messages WHERE id = ?`,
     [result.insertId]
   );

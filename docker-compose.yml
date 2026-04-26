@@ -34,6 +34,7 @@ services:
     volumes:
       - ./server:/app
       - /app/node_modules
+      - uploads_data:/app/uploads
 
   frontend:
     build: .
@@ -51,3 +52,4 @@ services:
 
 volumes:
   mysql_data:
+  uploads_data:

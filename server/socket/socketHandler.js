@@ -129,7 +129,7 @@ export const setupSocket = (io) => {
 
     socket.on('hub-message', async (data, callback) => {
       try {
-        const { content } = data;
+        const { content, isVanish = false } = data;
         if (!content || !content.trim()) return;
 
         const alias = anonymousAliases.get(socket.id) || generateAlias();
@@ -139,6 +139,7 @@ export const setupSocket = (io) => {
           sender_id: userId,
           anonymous_alias: alias,
           content: content.trim(),
+          is_vanish: isVanish
         });
 
         // Broadcast to everyone in hub

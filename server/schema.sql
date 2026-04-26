@@ -190,6 +190,7 @@ CREATE TABLE anonymous_messages (
   sender_id INT NOT NULL,
   anonymous_alias VARCHAR(50) NOT NULL,
   content TEXT NOT NULL,
+  is_vanish BOOLEAN DEFAULT FALSE,
   created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
   FOREIGN KEY (sender_id) REFERENCES users(id) ON DELETE CASCADE
 );
