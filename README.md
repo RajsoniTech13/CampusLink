@@ -7,6 +7,7 @@ A production-ready campus social network (Facebook + WhatsApp + LinkedIn hybrid)
 - **Auth**: JWT + Cookies, bcrypt password hashing, protected routes
 - **Social Feed**: Create posts with images, like, comment, infinite scroll
 - **Real-time Chat**: 1-1 and group chat via Socket.IO, typing indicators
+- **Anonymous Hub**: Campus-wide anonymous chat with unique session aliases
 - **Friends**: Send/accept/reject requests, online/offline status
 - **Groups**: Create, join, group chat integration
 - **Clubs**: Create, join, club-specific post feeds
@@ -96,7 +97,7 @@ cp .env.example .env
 
 # Start server
 npm run dev
-# Server runs on http://localhost:5000
+# Server runs on http://localhost:5001
 ```
 
 ### 3. Frontend Setup
@@ -145,6 +146,7 @@ Visit `http://localhost:5173` in your browser.
 | GET | `/api/chats/:id/messages` | Messages |
 | POST | `/api/clubs` | Create club |
 | POST | `/api/groups` | Create group |
+| GET | `/api/anonymous/messages` | Get anonymous hub history |
 | GET | `/api/notifications` | Notifications |
 
 ## 🔌 Socket.IO Events
@@ -157,6 +159,10 @@ Visit `http://localhost:5173` in your browser.
 | `typing` | Bi-directional | Typing indicator |
 | `user-online` | Server → Client | User came online |
 | `user-offline` | Server → Client | User went offline |
+| `join-hub` | Client → Server | Join anonymous hub |
+| `hub-message` | Client → Server | Send anonymous message |
+| `hub-new-message` | Server → Client | Receive anonymous message |
+| `hub-typing` | Client → Server | Anonymous typing indicator |
 | `notification` | Server → Client | Push notification |
 
 ## 🎨 Theme

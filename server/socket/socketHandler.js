@@ -112,13 +112,15 @@ export const setupSocket = (io) => {
     });
 
     // ─── Anonymous Hub ───
-    socket.on('join-hub', () => {
+    socket.on('join-hub', (callback) => {
       socket.join('campus_hub');
       // Assign a random alias for this session
       if (!anonymousAliases.has(socket.id)) {
         anonymousAliases.set(socket.id, generateAlias());
       }
-      console.log(`User ${userId} joined campus_hub as ${anonymousAliases.get(socket.id)}`);
+      const alias = anonymousAliases.get(socket.id);
+      console.log(`User ${userId} joined campus_hub as ${alias}`);
+      if (callback) callback({ success: true, alias });
     });
 
     socket.on('leave-hub', () => {

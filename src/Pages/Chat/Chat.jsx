@@ -1,6 +1,6 @@
-import { useEffect, useState, useRef } from "react";
-import { Send, ArrowBack, Forum, Group as GroupIcon, Visibility, VisibilityOff } from "@mui/icons-material";
+import { Send, ArrowBack, Forum, Group as GroupIcon, Visibility, VisibilityOff, SentimentSatisfiedAlt } from "@mui/icons-material";
 import { useLocation } from "react-router-dom";
+import EmojiPicker from 'emoji-picker-react';
 import Navbar from "../../Components/Navbar/Navbar.jsx";
 import { ChatSkeleton } from "../../Components/Skeletons/Skeletons.jsx";
 import useChatStore from "../../store/chatStore.js";
@@ -20,8 +20,16 @@ export default function ChatPage() {
   const [mobileShowChat, setMobileShowChat] = useState(false);
   const [chatTab, setChatTab] = useState("recent");
   const [mainTab, setMainTab] = useState("dm"); // dm | group | hub
+  const [showEmoji, setShowEmoji] = useState(false);
   const messagesEndRef = useRef(null);
   const typingTimer = useRef(null);
+  const emojiRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (e) => { if (emojiRef.current && !emojiRef.current.contains(e.target)) setShowEmoji(false); };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   // Anonymous Hub state
   const [hubMessages, setHubMessages] = useState([]);
@@ -77,9 +85,15 @@ export default function ChatPage() {
   useEffect(() => {
     if (mainTab === 'hub' && !hubJoined) {
       const socket = getSocket();
-      if (socket) { socket.emit('join-hub'); setHubJoined(true); loadHubMessages(); }
+      if (socket) {
+        socket.emit('join-hub', (res) => {
+          if (res?.success) setHubAlias(res.alias);
+        });
+        setHubJoined(true);
+        loadHubMessages();
+      }
     }
-  }, [mainTab]);
+  }, [mainTab, hubJoined]);
 
   const loadHubMessages = async () => {
     setHubLoading(true);
@@ -180,14 +194,22 @@ export default function ChatPage() {
         })}
         <div ref={messagesEndRef} className="h-2" />
       </div>
-      <div className="p-4 bg-white dark:bg-dark-800 border-t border-gray-200 dark:border-dark-400">
+      <div className="p-4 bg-white dark:bg-dark-800 border-t border-gray-200 dark:border-dark-400 relative">
+        {showEmoji && (
+          <div ref={emojiRef} className="absolute bottom-full right-4 mb-2 z-50">
+            <EmojiPicker onEmojiClick={(e) => setMessageText(prev => prev + e.emoji)} theme="auto" />
+          </div>
+        )}
         <div className="flex items-center gap-2 max-w-4xl mx-auto">
+          <button onClick={() => setShowEmoji(!showEmoji)} className="p-2 text-dark-200 hover:text-primary-500 transition-colors">
+            <SentimentSatisfiedAlt />
+          </button>
           <div className="flex-1 flex items-center bg-gray-100 dark:bg-dark-700 rounded-full px-4 py-1.5 focus-within:ring-2 focus-within:ring-primary-500/50 transition-all border border-gray-200 dark:border-dark-600">
             <input value={messageText} onChange={(e) => handleTypingInput(e.target.value)}
-              onKeyDown={(e) => e.key === 'Enter' && !e.shiftKey && (e.preventDefault(), handleSend())}
+              onKeyDown={(e) => e.key === 'Enter' && !e.shiftKey && (e.preventDefault(), handleSend(), setShowEmoji(false))}
               placeholder="Message..." className="flex-1 w-full bg-transparent px-3 py-2 text-[15px] focus:outline-none text-gray-900 dark:text-white placeholder-dark-200" />
           </div>
-          <button onClick={handleSend} disabled={!messageText.trim()}
+          <button onClick={() => (handleSend(), setShowEmoji(false))} disabled={!messageText.trim()}
             className={`w-11 h-11 flex items-center justify-center rounded-full transition-all flex-shrink-0 shadow-md ${messageText.trim() ? "bg-primary-600 hover:bg-primary-500 text-white active:scale-95" : "bg-gray-200 dark:bg-dark-700 text-gray-400 cursor-not-allowed"}`}>
             <Send style={{ fontSize: 20 }} />
           </button>
@@ -231,15 +253,23 @@ export default function ChatPage() {
         })}
         <div ref={hubEndRef} className="h-2" />
       </div>
-      <div className="p-4 bg-white dark:bg-dark-800 border-t border-gray-200 dark:border-dark-400">
+      <div className="p-4 bg-white dark:bg-dark-800 border-t border-gray-200 dark:border-dark-400 relative">
+        {showEmoji && (
+          <div ref={emojiRef} className="absolute bottom-full right-4 mb-2 z-50">
+            <EmojiPicker onEmojiClick={(e) => setHubText(prev => prev + e.emoji)} theme="auto" />
+          </div>
+        )}
         <div className="flex items-center gap-2 max-w-4xl mx-auto">
+          <button onClick={() => setShowEmoji(!showEmoji)} className="p-2 text-dark-200 hover:text-accent-500 transition-colors">
+            <SentimentSatisfiedAlt />
+          </button>
           <div className="flex-1 flex items-center bg-gray-100 dark:bg-dark-700 rounded-full px-4 py-1.5 focus-within:ring-2 focus-within:ring-accent-500/50 transition-all border border-gray-200 dark:border-dark-600">
             <span className="text-lg mr-1">🎭</span>
             <input value={hubText} onChange={(e) => handleHubTypingInput(e.target.value)}
-              onKeyDown={(e) => e.key === 'Enter' && !e.shiftKey && (e.preventDefault(), handleHubSend())}
+              onKeyDown={(e) => e.key === 'Enter' && !e.shiftKey && (e.preventDefault(), handleHubSend(), setShowEmoji(false))}
               placeholder="Say something anonymously..." className="flex-1 w-full bg-transparent px-2 py-2 text-[15px] focus:outline-none text-gray-900 dark:text-white placeholder-dark-200" />
           </div>
-          <button onClick={handleHubSend} disabled={!hubText.trim()}
+          <button onClick={() => (handleHubSend(), setShowEmoji(false))} disabled={!hubText.trim()}
             className={`w-11 h-11 flex items-center justify-center rounded-full transition-all flex-shrink-0 shadow-md ${hubText.trim() ? "bg-accent-600 hover:bg-accent-500 text-white active:scale-95" : "bg-gray-200 dark:bg-dark-700 text-gray-400 cursor-not-allowed"}`}>
             <Send style={{ fontSize: 20 }} />
           </button>
