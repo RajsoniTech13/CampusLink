@@ -111,12 +111,12 @@ export default function Navbar() {
 
         {/* Nav Links */}
         <div className="hidden md:flex items-center gap-1">
-          {navLinks.map(({ path, icon: Icon, label, badge }) => (
+          {navLinks.map(({ path, icon: IconComponent, label, badge }) => ( // eslint-disable-line no-unused-vars
             <Link key={path} to={path}
               className={`relative flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-medium transition-all ${
                 isActive(path) ? "bg-primary-50 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400" :
                 "text-gray-600 dark:text-dark-100 hover:bg-gray-100 dark:hover:bg-dark-600"}`}>
-              <Icon style={{ fontSize: 20 }} />
+              <IconComponent style={{ fontSize: 20 }} />
               <span className="hidden lg:inline">{label}</span>
               {badge > 0 && <span className="badge absolute -top-1 -right-1">{badge}</span>}
             </Link>
@@ -191,10 +191,10 @@ export default function Navbar() {
 
       {/* Mobile Nav */}
       <div className="md:hidden flex items-center justify-around border-t border-gray-200 dark:border-dark-400 px-2 py-1">
-        {navLinks.map(({ path, icon: Icon, badge }) => (
+        {navLinks.map(({ path, icon: IconComponent, badge }) => ( // eslint-disable-line no-unused-vars
           <Link key={path} to={path}
             className={`relative p-2 rounded-lg ${isActive(path) ? "text-primary-500" : "text-gray-500 dark:text-dark-200"}`}>
-            <Icon style={{ fontSize: 22 }} />
+            <IconComponent style={{ fontSize: 22 }} />
             {badge > 0 && <span className="badge absolute -top-0.5 -right-0.5 text-[10px]">{badge}</span>}
           </Link>
         ))}

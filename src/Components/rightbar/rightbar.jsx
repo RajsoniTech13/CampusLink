@@ -2,7 +2,7 @@ import "./rightbar.css";
 import { ExpandMore } from "@mui/icons-material";
 export default function rightbar() {
 
-  const HomeRightbar = ({ profile }) => {
+  const HomeRightbar = () => {
     return (
 
       <>

@@ -9,7 +9,7 @@ export const verifyToken = (req, res, next) => {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     req.user = decoded;
     next();
-  } catch (err) {
+  } catch {
     return res.status(401).json({ error: 'Invalid or expired token.' });
   }
 };
@@ -19,7 +19,7 @@ export const optionalAuth = (req, res, next) => {
   if (token) {
     try {
       req.user = jwt.verify(token, process.env.JWT_SECRET);
-    } catch (_) { /* ignore */ }
+    } catch { /* ignore */ }
   }
   next();
 };

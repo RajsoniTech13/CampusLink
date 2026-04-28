@@ -106,7 +106,7 @@ export default function ChatPage() {
 
   const loadHubMessages = async () => {
     setHubLoading(true);
-    try { const { data } = await api.get('/anonymous/messages'); setHubMessages(data.messages || []); } catch {}
+    try { const { data } = await api.get('/anonymous/messages'); setHubMessages(data.messages || []); } catch (error) { console.error('Failed to load hub messages:', error); }
     setHubLoading(false);
   };
 
@@ -153,7 +153,7 @@ export default function ChatPage() {
 
   const selectChat = (chatId) => { openChat(chatId); setMobileShowChat(true); setChatTab("recent"); };
   const startNewPrivateChat = async (friendId) => {
-    try { const { data } = await api.post('/chats/private', { userId: friendId }); await fetchChats(); selectChat(data.chatId); } catch {}
+    try { const { data } = await api.post('/chats/private', { userId: friendId }); await fetchChats(); selectChat(data.chatId); } catch (error) { console.error('Failed to start private chat:', error); }
   };
   const goBack = () => { closeChat(); setMobileShowChat(false); };
 

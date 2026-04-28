@@ -2,8 +2,6 @@ import { useEffect, useState } from "react";
 import { Add, Group as GroupIcon, People, Chat } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../../Components/Navbar/Navbar.jsx";
-import useChatStore from "../../store/chatStore.js";
-import { imgSrc } from "../../utils/config.js";
 import api from "../../services/api.js";
 import toast from "react-hot-toast";
 
