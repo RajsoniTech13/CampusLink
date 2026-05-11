@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { Send, ArrowBack, Forum, Group as GroupIcon, Visibility, VisibilityOff, SentimentSatisfiedAlt } from "@mui/icons-material";
+import { Send, ArrowBack, Forum, Group as GroupIcon, Visibility, VisibilityOff, SentimentSatisfiedAlt, PeopleRounded, ChatBubbleRounded } from "@mui/icons-material";
 import { useLocation } from "react-router-dom";
 import EmojiPicker from 'emoji-picker-react';
 import Navbar from "../../Components/Navbar/Navbar.jsx";
@@ -371,7 +371,7 @@ export default function ChatPage() {
               </div>
             ) : mainTab === 'dm' && chatTab === 'friends' ? (
               friends.length === 0 ? (
-                <div className="flex flex-col items-center justify-center h-full p-6 text-center"><p className="text-4xl mb-3">👥</p><p className="text-gray-900 dark:text-white font-medium">No friends</p><p className="text-dark-200 text-sm">Add friends to start chatting.</p></div>
+                <div className="flex flex-col items-center justify-center h-full p-6 text-center"><PeopleRounded style={{ fontSize: 48 }} className="text-primary-400 mb-3" /><p className="text-gray-900 dark:text-white font-medium">No friends</p><p className="text-dark-200 text-sm">Add friends to start chatting.</p></div>
               ) : friends.map(f => (
                 <button key={f.id} onClick={() => startNewPrivateChat(f.id)}
                   className="w-full flex items-center gap-3 p-4 hover:bg-gray-50 dark:hover:bg-dark-700 transition-colors text-left border-b border-gray-50 dark:border-dark-700/50">
@@ -389,7 +389,7 @@ export default function ChatPage() {
               loadingChats ? [1,2,3,4].map(i => <ChatSkeleton key={i} />) :
               currentList.length === 0 ? (
                 <div className="flex flex-col items-center justify-center h-full p-6 text-center">
-                  <p className="text-4xl mb-3">{mainTab === 'dm' ? '💬' : '👥'}</p>
+                  {mainTab === 'dm' ? <ChatBubbleRounded style={{ fontSize: 48 }} className="text-primary-400 mb-3" /> : <PeopleRounded style={{ fontSize: 48 }} className="text-primary-400 mb-3" />}
                   <p className="text-gray-900 dark:text-white font-medium mb-1">No {mainTab === 'dm' ? 'messages' : 'group chats'}</p>
                   <p className="text-dark-200 text-sm">{mainTab === 'dm' ? 'Start a conversation from the Friends tab.' : 'Join a group to start chatting.'}</p>
                   {mainTab === 'dm' && <button onClick={() => setChatTab('friends')} className="mt-4 text-primary-500 text-sm font-medium hover:underline">View Friends</button>}
@@ -404,7 +404,7 @@ export default function ChatPage() {
           {mainTab === 'hub' ? renderHub() :
            activeChat ? renderChatWindow() : (
             <div className="flex-1 flex flex-col items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 dark:from-dark-900 dark:to-dark-800">
-              <div className="w-32 h-32 bg-white dark:bg-dark-800 rounded-full flex items-center justify-center shadow-lg mb-6 border-4 border-gray-50 dark:border-dark-900"><p className="text-6xl">💬</p></div>
+              <div className="w-32 h-32 bg-white dark:bg-dark-800 rounded-full flex items-center justify-center shadow-lg mb-6 border-4 border-gray-50 dark:border-dark-900"><ChatBubbleRounded style={{ fontSize: 64 }} className="text-primary-500" /></div>
               <h3 className="text-2xl font-bold text-gray-900 dark:text-white tracking-tight">CampusLink Messages</h3>
               <p className="text-gray-500 dark:text-dark-200 mt-2 max-w-sm text-center">Select a conversation or start a new one to stay connected with your campus.</p>
               <button onClick={() => setChatTab('friends')} className="mt-8 btn-primary px-6 rounded-full shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all">Start messaging</button>

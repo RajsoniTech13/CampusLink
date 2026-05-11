@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Add, Group as GroupIcon, People, Chat } from "@mui/icons-material";
+import { Add, Group as GroupIcon, People, Chat, MenuBookRounded } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../../Components/Navbar/Navbar.jsx";
 import api from "../../services/api.js";
@@ -63,7 +63,7 @@ export default function Groups() {
         {loading ? (
           <div className="grid gap-4 md:grid-cols-2">{[1,2,3,4].map(i => <div key={i} className="skeleton h-40 rounded-xl" />)}</div>
         ) : groups.length === 0 ? (
-          <div className="card p-12 text-center"><p className="text-4xl mb-3">📚</p><p className="text-dark-200">No groups yet. Create one!</p></div>
+          <div className="card p-12 text-center flex flex-col items-center"><MenuBookRounded style={{ fontSize: 48 }} className="text-primary-400 mb-3 mx-auto" /><p className="text-dark-200 font-medium">No groups yet. Create one!</p></div>
         ) : (
           <div className="grid gap-4 md:grid-cols-2">
             {groups.map(g => (

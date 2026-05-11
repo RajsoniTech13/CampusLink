@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Add, Diversity2Sharp, People, ArrowBack } from "@mui/icons-material";
+import { Add, Diversity2Sharp, People, ArrowBack, TheaterComedyRounded } from "@mui/icons-material";
 import Navbar from "../../Components/Navbar/Navbar.jsx";
 import PostCard from "../../Components/PostCard/PostCard.jsx";
 import ShareBox from "../../Components/ShareBox/ShareBox.jsx";
@@ -97,7 +97,7 @@ export default function Clubs() {
             {loading ? (
               <div className="grid gap-4 md:grid-cols-2">{[1,2,3,4].map(i => <div key={i} className="skeleton h-48 rounded-xl" />)}</div>
             ) : filtered.length === 0 ? (
-              <div className="card p-12 text-center"><p className="text-4xl mb-3">🎭</p><p className="text-dark-200">No clubs found</p></div>
+              <div className="card p-12 text-center flex flex-col items-center"><TheaterComedyRounded style={{ fontSize: 48 }} className="text-accent-400 mb-3 mx-auto" /><p className="text-dark-200 font-medium">No clubs found</p></div>
             ) : (
               <div className="grid gap-4 md:grid-cols-2">
                 {filtered.map(c => (

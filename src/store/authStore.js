@@ -9,14 +9,29 @@ const useAuthStore = create((set, get) => ({
 
   // Check session on app load
   checkAuth: async () => {
-    try {
-      set({ loading: true });
-      const { data } = await api.get('/auth/me');
-      set({ user: data, loading: false });
-      connectSocket();
-    } catch {
-      set({ user: null, loading: false });
-    }
+    // MOCK USER FOR UI TESTING (Bypass backend)
+    set({ 
+      user: { 
+        id: 1, 
+        username: 'Demo User', 
+        email: 'demo@campus.edu', 
+        role: 'student', 
+        profile_pic: null, 
+        postCount: 5, 
+        friendCount: 12 
+      }, 
+      loading: false 
+    });
+    
+    // Original code (commented out):
+    // try {
+    //   set({ loading: true });
+    //   const { data } = await api.get('/auth/me');
+    //   set({ user: data, loading: false });
+    //   connectSocket();
+    // } catch {
+    //   set({ user: null, loading: false });
+    // }
   },
 
   login: async (email, password) => {

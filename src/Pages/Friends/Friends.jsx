@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { PersonAdd, Check, Close, PersonRemove, Search, Message } from "@mui/icons-material";
+import { PersonAdd, Check, Close, PersonRemove, Search, Message, HandshakeRounded, MarkEmailUnreadRounded } from "@mui/icons-material";
 import Navbar from "../../Components/Navbar/Navbar.jsx";
 import { FriendSkeleton } from "../../Components/Skeletons/Skeletons.jsx";
 import useFriendStore from "../../store/friendStore.js";
@@ -80,7 +80,7 @@ export default function Friends() {
             {loading ? [1,2,3].map(i => <FriendSkeleton key={i} />) :
              friends.length === 0 ? (
               <div className="p-12 text-center">
-                <p className="text-4xl mb-3">🤝</p>
+                <HandshakeRounded style={{ fontSize: 48 }} className="text-primary-400 mb-3 mx-auto" />
                 <p className="text-gray-600 dark:text-dark-100 font-medium">No friends yet</p>
                 <p className="text-sm text-dark-200 mt-1 mb-4">Connect with people to see them here.</p>
                 <button onClick={() => setTab("search")} className="btn-primary text-sm px-6">Find People</button>
@@ -115,7 +115,7 @@ export default function Friends() {
           <div className="card divide-y divide-gray-100 dark:divide-dark-400 overflow-hidden">
             {requests.length === 0 ? (
               <div className="p-12 text-center">
-                <p className="text-4xl mb-3">📬</p>
+                <MarkEmailUnreadRounded style={{ fontSize: 48 }} className="text-primary-400 mb-3 mx-auto" />
                 <p className="text-gray-600 dark:text-dark-100 font-medium">No pending requests</p>
                 <p className="text-sm text-dark-200 mt-1">You're all caught up!</p>
               </div>

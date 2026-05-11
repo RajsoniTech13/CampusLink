@@ -165,8 +165,8 @@ export default function Profile() {
         <div className="mb-10">
           <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-4 px-1">Posts by {profile?.username?.split(' ')[0]}</h2>
           {posts.length === 0 ? (
-            <div className="card p-12 text-center">
-              <p className="text-4xl mb-3">📝</p>
+            <div className="card p-12 text-center flex flex-col items-center">
+              <Message style={{ fontSize: 48 }} className="text-gray-300 dark:text-dark-400 mb-3" />
               <p className="text-dark-200 font-medium">No posts to show</p>
             </div>
           ) : posts.map(p => <PostCard key={p.id} post={p} />)}

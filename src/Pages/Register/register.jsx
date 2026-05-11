@@ -24,7 +24,7 @@ export default function Register() {
     setLoading(true);
     try {
       await register(form);
-      toast.success("Welcome to CampusLink! 🎓");
+      toast.success("Welcome to CampusLink!");
       navigate("/home");
     } catch (err) {
       toast.error(err.message);

@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useInView } from "react-intersection-observer";
+import { HomeRounded, PeopleRounded, ChatBubbleRounded, MenuBookRounded, TheaterComedyRounded, WavingHandRounded, CelebrationRounded } from "@mui/icons-material";
 import Navbar from "../../Components/Navbar/Navbar.jsx";
 import ShareBox from "../../Components/ShareBox/ShareBox.jsx";
 import PostCard from "../../Components/PostCard/PostCard.jsx";
@@ -38,9 +39,9 @@ function RightSidebar() {
         <div className="card p-4">
           <h3 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Quick Links</h3>
           <div className="space-y-1.5">
-            <Link to="/groups" className="block text-sm text-primary-500 hover:text-primary-400">📚 Study Groups</Link>
-            <Link to="/clubs" className="block text-sm text-primary-500 hover:text-primary-400">🎭 Campus Clubs</Link>
-            <Link to="/friends" className="block text-sm text-primary-500 hover:text-primary-400">👥 Find Friends</Link>
+            <Link to="/groups" className="flex items-center gap-2 text-sm text-gray-700 dark:text-dark-100 hover:text-primary-500 transition-colors py-1"><MenuBookRounded style={{ fontSize: 16 }} className="text-primary-400" /> Study Groups</Link>
+            <Link to="/clubs" className="flex items-center gap-2 text-sm text-gray-700 dark:text-dark-100 hover:text-primary-500 transition-colors py-1"><TheaterComedyRounded style={{ fontSize: 16 }} className="text-accent-400" /> Campus Clubs</Link>
+            <Link to="/friends" className="flex items-center gap-2 text-sm text-gray-700 dark:text-dark-100 hover:text-primary-500 transition-colors py-1"><PeopleRounded style={{ fontSize: 16 }} className="text-green-500" /> Find Friends</Link>
           </div>
         </div>
       </div>
@@ -77,14 +78,14 @@ export default function Home() {
             </div>
             <nav className="card p-2">
               {[
-                { to: "/home", emoji: "🏠", label: "Home Feed" },
-                { to: "/friends", emoji: "👥", label: "Friends" },
-                { to: "/chat", emoji: "💬", label: "Messages" },
-                { to: "/groups", emoji: "📚", label: "Groups" },
-                { to: "/clubs", emoji: "🎭", label: "Clubs" },
+                { to: "/home", icon: HomeRounded, label: "Home Feed" },
+                { to: "/friends", icon: PeopleRounded, label: "Friends" },
+                { to: "/chat", icon: ChatBubbleRounded, label: "Messages" },
+                { to: "/groups", icon: MenuBookRounded, label: "Groups" },
+                { to: "/clubs", icon: TheaterComedyRounded, label: "Clubs" },
               ].map(l => (
                 <Link key={l.to} to={l.to} className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-700 dark:text-dark-100 hover:bg-gray-50 dark:hover:bg-dark-500 transition-all font-medium">
-                  <span>{l.emoji}</span> {l.label}
+                  <l.icon className="text-primary-500" style={{ fontSize: 20 }} /> {l.label}
                 </Link>
               ))}
             </nav>
@@ -95,14 +96,18 @@ export default function Home() {
           {posts.map((p) => <PostCard key={p.id} post={p} />)}
           {loading && [1,2,3].map(i => <PostSkeleton key={i} />)}
           {!loading && posts.length === 0 && (
-            <div className="card p-8 text-center">
-              <p className="text-4xl mb-3">👋</p>
-              <p className="text-gray-600 dark:text-dark-100 font-medium">Welcome to CampusLink!</p>
-              <p className="text-sm text-dark-200 mt-1">Start by adding friends to see their posts here.</p>
+            <div className="card p-8 text-center flex flex-col items-center">
+              <WavingHandRounded style={{ fontSize: 48 }} className="text-primary-400 mb-4" />
+              <p className="text-lg text-gray-800 dark:text-dark-50 font-bold">Welcome to CampusLink!</p>
+              <p className="text-sm text-dark-200 mt-2">Start by adding friends to see their posts here.</p>
             </div>
           )}
           {hasMore && <div ref={loadMoreRef} className="h-10" />}
-          {!hasMore && posts.length > 0 && <p className="text-center text-sm text-dark-200 py-4">You're all caught up! 🎉</p>}
+          {!hasMore && posts.length > 0 && (
+            <p className="flex items-center justify-center gap-2 text-sm text-dark-200 py-4">
+              You're all caught up! <CelebrationRounded style={{ fontSize: 18 }} className="text-accent-500" />
+            </p>
+          )}
         </main>
         <RightSidebar />
       </div>
